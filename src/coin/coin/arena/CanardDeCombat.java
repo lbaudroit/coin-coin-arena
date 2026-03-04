@@ -63,6 +63,10 @@ abstract class CanardDeCombat {
         }
         this.surnom = surnom;
     }
+    
+    protected void setPvActuels(int pvActuels) {
+        this.pvActuels = pvActuels;
+    }
 
     public boolean estKO() {
         return pvActuels <= 0;
@@ -102,10 +106,8 @@ abstract class CanardDeCombat {
         );
     }
 
-    // Méthode abstraite pour le type élémentaire
     public abstract String getType();
 
-    // Méthode de combat
     public void attaquer(CanardDeCombat cible) {
         if (cible == null) {
             throw new IllegalArgumentException(
@@ -128,14 +130,17 @@ abstract class CanardDeCombat {
             System.out.println("Ce n'est pas très efficace...");
         }
         int degats = Math.max(1, (int) Math.round(this.atk * multiplicateur));
-        // Affiche le déroulement avant d'appliquer les dégâts
         System.out.println(
             "%s inflige %d dégâts.".formatted(this.surnom, degats)
         );
         cible.subirDegats(degats);
     }
+    
+    public abstract double getMultiplicateur(CanardFeu cible);
 
-    public double getMultiplicateur(CanardDeCombat cible) {
-        return 1.0;
-    }
+    public abstract double getMultiplicateur(CanardEau cible);
+
+    public abstract double getMultiplicateur(CanardPlante cible);
+
+    public abstract double getMultiplicateur(CanardClassique cible);
 }
