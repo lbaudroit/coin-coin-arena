@@ -80,14 +80,6 @@ abstract class CanardDeCombat implements Soignable, Combattant {
         if (pvActuels < 0) {
             pvActuels = 0;
         }
-        System.out.println(
-            "%s subit %d dégâts ! (PV: %d/%d)".formatted(
-                surnom,
-                degats,
-                pvActuels,
-                pvMax
-            )
-        );
     }
 
     public void soigner() {
@@ -128,7 +120,7 @@ abstract class CanardDeCombat implements Soignable, Combattant {
         int degats = (int) (getAtk() * mult);
 
         System.out.println(
-            "%s attaque %s ! (%s → %s : x%.1f ) → %d dégâts".formatted(
+            "%s attaque %s ! (%s → %s : x%.1f) → %d dégâts".formatted(
                 getSurnom(),
                 cible.getSurnom(),
                 getType(),
