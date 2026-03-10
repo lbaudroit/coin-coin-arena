@@ -1,4 +1,4 @@
-abstract class CanardDeCombat {
+abstract class CanardDeCombat implements Soignable, Combattant {
 
     private final String nom;
     private String surnom;

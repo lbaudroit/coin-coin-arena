@@ -10,3 +10,7 @@ Il nous faut donc utiliser les mécanismes d'héritage pour choisir le multiplic
 # Réflexion R3
 Au total, on a 4 types différents avec 4 types d'attaquant différents. Cependant, nous n'avons pas redéfini les multiplicateurs de 1.0, donc au total on a 3*3 redéfinitions.
 Si on ajoutait un nouveau type, on devrait ajouter le multiplicateur dans chaque autre type et définir les 5 multiplicateurs du nouveau type, soit (n-1)+(n)=2n-1 multiplications avec n le nouveau nombre de types.
+
+# Réflexion R4
+Si l'arène accepte des Combattants, l'utilisation de l'interface permettrait d'accepter toutes sortes de combattants. 
+De la même manière, Soignable permet à toute classe avec des PV d'avoir un comportement similaire.
