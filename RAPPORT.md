@@ -14,3 +14,6 @@ Si on ajoutait un nouveau type, on devrait ajouter le multiplicateur dans chaque
 # Réflexion R4
 Si l'arène accepte des Combattants, l'utilisation de l'interface permettrait d'accepter toutes sortes de combattants. 
 De la même manière, Soignable permet à toute classe avec des PV d'avoir un comportement similaire.
+
+# Réflexion R5
+Avec 4 types et 3 comportements spéciaux, on aurait 12 types spéciaux, ou 16 en comptant les types de base (comme CanardFeu). Idéalement, il faudrait implémenter ces comportements différemment (par composition ?)
