@@ -17,20 +17,9 @@ class CanardClassique extends CanardDeCombat {
     public String toString() {
         return super.toString() + " [Classique]";
     }
-
-    public double getMultiplicateur(CanardFeu cible) {
-        return 1.0; // Normal vs Feu → 1.0
-    }
-
-    public double getMultiplicateur(CanardEau cible) {
-        return 1.0; // Normal vs Eau → 1.0
-    }
-
-    public double getMultiplicateur(CanardPlante cible) {
-        return 1.0; // Normal vs Plante → 1.0
-    }
-
-    public double getMultiplicateur(CanardClassique cible) {
-        return 1.0; // Normal vs Normal → 1.0
+    
+    public void attaquer(CanardDeCombat cible) {
+        double mult = cible.etreAttaqueePar(this);
+        effectuerAttaque(cible, mult);
     }
 }

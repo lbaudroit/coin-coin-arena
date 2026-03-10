@@ -34,32 +34,24 @@ class CanardEau extends CanardDeCombat {
     public String toString() {
         return super.toString() + " [Pression: %d]".formatted(pressionJet);
     }
-
-    public double getMultiplicateur(CanardFeu cible) {
-        System.out.println(
-            " Jet d'eau (pression: %d) !".formatted(pressionJet)
-        );
-        return 2.0; // Eau vs Feu
+    
+    public void attaquer(CanardDeCombat cible) {
+        double mult = cible.etreAttaqueePar(this);
+        effectuerAttaque(cible, mult);
     }
-
-    public double getMultiplicateur(CanardEau cible) {
-        System.out.println(
-            " Jet d'eau (pression: %d) !".formatted(pressionJet)
-        );
-        return 0.5; // Eau vs Eau
+    
+    @Override
+    public double etreAttaqueePar(CanardFeu attaquant) {
+        return 0.5;
     }
-
-    public double getMultiplicateur(CanardPlante cible) {
-        System.out.println(
-            " Jet d'eau (pression: %d) !".formatted(pressionJet)
-        );
-        return 0.5; // Eau vs Plante
+    
+    @Override
+    public double etreAttaqueePar(CanardEau attaquant) {
+        return 0.5;
     }
-
-    public double getMultiplicateur(CanardClassique cible) {
-        System.out.println(
-            " Jet d'eau (pression: %d) !".formatted(pressionJet)
-        );
-        return 1.0; // Eau vs Normal
+    
+    @Override
+    public double etreAttaqueePar(CanardPlante attaquant) {
+        return 2.0;
     }
 }

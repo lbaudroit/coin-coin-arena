@@ -35,20 +35,24 @@ class CanardPlante extends CanardDeCombat {
     public String toString() {
         return super.toString() + " [Régénération: 10% PV max/tour]";
     }
-
-    public double getMultiplicateur(CanardFeu cible) {
-        return 0.5; // Plante vs Feu → 0.5
+    
+    public void attaquer(CanardDeCombat cible) {
+        double mult = cible.etreAttaqueePar(this);
+        effectuerAttaque(cible, mult);
     }
-
-    public double getMultiplicateur(CanardEau cible) {
-        return 2.0; // Plante vs Eau → 2.0
+    
+    @Override
+    public double etreAttaqueePar(CanardFeu attaquant) {
+        return 2.0;
     }
-
-    public double getMultiplicateur(CanardPlante cible) {
-        return 0.5; // Plante vs Plante → 0.5
+    
+    @Override
+    public double etreAttaqueePar(CanardEau attaquant) {
+        return 0.5;
     }
-
-    public double getMultiplicateur(CanardClassique cible) {
-        return 1.0; // Plante vs Normal → 1.0
+    
+    @Override
+    public double etreAttaqueePar(CanardPlante attaquant) {
+        return 0.5;
     }
 }

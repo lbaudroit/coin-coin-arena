@@ -38,20 +38,24 @@ class CanardFeu extends CanardDeCombat {
     public String toString() {
         return super.toString() + " [Flamme: x%.2f]".formatted(intensiteFlamme);
     }
-
-    public double getMultiplicateur(CanardFeu cible) {
-        return 0.5 * intensiteFlamme;
+    
+    public void attaquer(CanardDeCombat cible) {
+        double mult = cible.etreAttaqueePar(this) * intensiteFlamme;
+        effectuerAttaque(cible, mult);
     }
-
-    public double getMultiplicateur(CanardEau cible) {
-        return 0.5 * intensiteFlamme;
+    
+    @Override
+    public double etreAttaqueePar(CanardFeu attaquant) {
+        return 0.5;
     }
-
-    public double getMultiplicateur(CanardPlante cible) {
-        return 2.0 * intensiteFlamme;
+    
+    @Override
+    public double etreAttaqueePar(CanardEau attaquant) {
+        return 2.0;
     }
-
-    public double getMultiplicateur(CanardClassique cible) {
-        return 1.0 * intensiteFlamme;
+    
+    @Override
+    public double etreAttaqueePar(CanardPlante attaquant) {
+        return 0.5;
     }
 }

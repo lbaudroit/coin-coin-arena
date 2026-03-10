@@ -63,7 +63,7 @@ abstract class CanardDeCombat {
         }
         this.surnom = surnom;
     }
-    
+
     protected void setPvActuels(int pvActuels) {
         this.pvActuels = pvActuels;
     }
@@ -108,39 +108,38 @@ abstract class CanardDeCombat {
 
     public abstract String getType();
 
-    public void attaquer(CanardDeCombat cible) {
-        if (cible == null) {
-            throw new IllegalArgumentException(
-                "La cible ne peut pas être null."
-            );
-        }
-        if (this.estKO()) {
-            System.out.println(
-                "%s est KO et ne peut pas attaquer.".formatted(this.surnom)
-            );
-            return;
-        }
+    // Logique d'attaque commune (pas de logique de type !)
+    protected void effectuerAttaque(CanardDeCombat cible, double mult) {
+        int degats = (int) (getAtk() * mult);
+
         System.out.println(
-            "%s attaque %s !".formatted(this.surnom, cible.getSurnom())
-        );
-        double multiplicateur = getMultiplicateur(cible);
-        if (multiplicateur > 1.0) {
-            System.out.println("C'est super efficace !");
-        } else if (multiplicateur < 1.0) {
-            System.out.println("Ce n'est pas très efficace...");
-        }
-        int degats = Math.max(1, (int) Math.round(this.atk * multiplicateur));
-        System.out.println(
-            "%s inflige %d dégâts.".formatted(this.surnom, degats)
+            "%s attaque %s ! (%s → %s : x%.1f ) → %d dégâts".formatted(
+                getSurnom(),
+                cible.getSurnom(),
+                getType(),
+                cible.getType(),
+                mult,
+                degats
+            )
         );
         cible.subirDegats(degats);
     }
-    
-    public abstract double getMultiplicateur(CanardFeu cible);
 
-    public abstract double getMultiplicateur(CanardEau cible);
+    public abstract void attaquer(CanardDeCombat cible);
 
-    public abstract double getMultiplicateur(CanardPlante cible);
+    public double etreAttaqueePar(CanardFeu attaquant) {
+        return 1.0;
+    }
 
-    public abstract double getMultiplicateur(CanardClassique cible);
+    public double etreAttaqueePar(CanardEau attaquant) {
+        return 1.0;
+    }
+
+    public double etreAttaqueePar(CanardPlante attaquant) {
+        return 1.0;
+    }
+
+    public double etreAttaqueePar(CanardClassique attaquant) {
+        return 1.0;
+    }
 }
