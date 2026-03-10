@@ -17,3 +17,6 @@ De la même manière, Soignable permet à toute classe avec des PV d'avoir un co
 
 # Réflexion R5
 Avec 4 types et 3 comportements spéciaux, on aurait 12 types spéciaux, ou 16 en comptant les types de base (comme CanardFeu). Idéalement, il faudrait implémenter ces comportements différemment (par composition ?)
+
+# Réflexion R6
+Ce test avec `instanceof` est signe d'une mauvaise conception : on demande à une classe d'adapter son comportement au type d'une autre avec laquelle il n'y a aucun lien. On pourrait définir des comportements de fin de tour au sein de chaque sous-classe pour résoudre le problème : ainsi, chaque sous-classe avec un comportement de fin de tour pourrait l'avoir, et la classe Arene n'aurait pas à comprendre le fonctionnement de chaque canard.

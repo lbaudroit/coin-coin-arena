@@ -108,6 +108,21 @@ abstract class CanardDeCombat implements Soignable, Combattant {
 
     public abstract String getType();
 
+    /**
+     * Affichage simplifié sans les infos spécifiques aux sous-classes.
+     * Utilisé par Equipe.afficher() pour correspondre au format attendu.
+     */
+    public String toStringSimple() {
+        return "[%s] %s «%s» (PV: %d/%d | ATK: %d)".formatted(
+            getType(),
+            nom,
+            surnom,
+            pvActuels,
+            pvMax,
+            atk
+        );
+    }
+
     // Logique d'attaque commune (pas de logique de type !)
     protected void effectuerAttaque(CanardDeCombat cible, double mult) {
         int degats = (int) (getAtk() * mult);
